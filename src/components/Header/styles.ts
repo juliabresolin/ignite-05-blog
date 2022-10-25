@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const HeaderContainer = styled.header`
   width: 100%;
@@ -7,7 +7,7 @@ export const HeaderContainer = styled.header`
 
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 
   position: relative;
   overflow: hidden;
@@ -44,4 +44,28 @@ export const HeaderContainer = styled.header`
 
 export const Logo = styled.img`
   margin-top: -5.5rem;
+`
+
+interface CodeEffectProps {
+  align?: 'left' | 'right'
+}
+
+export const CodeEffect = styled.img<CodeEffectProps>`
+  position: absolute;
+
+  ${(props) => {
+    if (props.align && props.align === 'left') {
+      return css`
+        left: 0;
+      `
+    } else {
+      return css`
+        right: 0;
+      `
+    }
+  }}
+
+  @media ${(props) => props.theme.breakpoints.mobile} {
+    display: none;
+  }
 `

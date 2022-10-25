@@ -15,4 +15,7 @@ export const theme = {
   fonts: {
     default: 'Nunito, sans-serif',
   },
+  breakpoints: {
+    mobile: 'only screen and (max-width: 768px)',
+  },
 } as const

@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react'
+import { useContext } from 'react'
 import { FaExternalLinkAlt } from 'react-icons/fa'
 import { UserContext } from '../../contexts/UserContext'
 import { Details, ProfileResumeContainer } from './styles'
@@ -6,26 +6,18 @@ import { Details, ProfileResumeContainer } from './styles'
 export function ProfileResume() {
   const { user } = useContext(UserContext)
 
-  useEffect(() => {
-    console.log(user)
-  }, [user])
-
   return (
     <ProfileResumeContainer>
-      <img src="https://github.com/juliabresolin.png" alt="" />
+      <img src={user.avatar_url} alt="" />
 
       <Details>
-        <strong>Julia Bresolin</strong>
-        <p>
-          Tristique volutpat pulvinar vel massa, pellentesque egestas. Eu
-          viverra massa quam dignissim aenean malesuada suscipit. Nunc, volutpat
-          pulvinar vel mass.
-        </p>
+        <strong>{user.name}</strong>
+        <p>{user.bio}</p>
 
         <span>details</span>
       </Details>
 
-      <a href="">
+      <a href={user.html_url} target="_blank noreferrer noopenner">
         Github
         <FaExternalLinkAlt />
       </a>

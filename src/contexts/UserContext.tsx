@@ -15,6 +15,7 @@ interface User {
   company: string
   followers: number
   html_url: string
+  expires_in: number
 }
 
 interface UserContextType {
@@ -36,19 +37,35 @@ export function UserProvider({ children }: UserProviderProps) {
   const getUser = useCallback(async () => {
     setUserIsLoading(true)
 
-    const response = await api.get(
-      `users/${import.meta.env.VITE_GITHUB_API_USERNAME}`,
+    const currentDate = new Date().getTime()
+    const userStoraged = JSON.parse(
+      localStorage.getItem(import.meta.env.VITE_LOCAL_STORAGE_USER_KEY)!,
     )
 
-    setUser({
-      avatar_url: response.data.avatar_url,
-      name: response.data.name,
-      bio: response.data.bio,
-      login: response.data.login,
-      company: response.data.company,
-      followers: response.data.followers,
-      html_url: response.data.html_url,
-    })
+    if (userStoraged && userStoraged.expires_in <= currentDate) {
+      setUser(userStoraged)
+    } else {
+      const response = await api.get(
+        `users/${import.meta.env.VITE_GITHUB_API_USERNAME}`,
+      )
+
+      const newUser: User = {
+        avatar_url: response.data.avatar_url,
+        name: response.data.name,
+        bio: response.data.bio,
+        login: response.data.login,
+        company: response.data.company,
+        followers: response.data.followers,
+        html_url: response.data.html_url,
+        expires_in: new Date(new Date().getDate() + 1).getTime(),
+      }
+
+      setUser(newUser)
+      localStorage.setItem(
+        import.meta.env.VITE_LOCAL_STORAGE_USER_KEY,
+        JSON.stringify(newUser),
+      )
+    }
 
     setUserIsLoading(false)
   }, [])

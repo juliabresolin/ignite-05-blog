@@ -5,6 +5,7 @@
 interface ImportMetaEnv {
   readonly VITE_GITHUB_API_USERNAME: string
   readonly VITE_GITHUB_API_REPO: string
+  readonly VITE_GITHUB_API_TOKEN: string
 }
 
 interface ImportMeta {

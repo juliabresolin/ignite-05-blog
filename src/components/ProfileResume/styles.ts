@@ -58,4 +58,27 @@ export const Details = styled.div`
     color: ${(props) => props.theme.colors.text};
     margin-top: 0.5rem;
   }
+
+  ul {
+    list-style: none;
+    margin-top: 1.5rem;
+
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+
+    li {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      font-size: 1rem;
+      line-height: 1.6;
+      color: ${(props) => props.theme.colors.subtitle};
+
+      svg {
+        color: ${(props) => props.theme.colors.label};
+      }
+    }
+  }
 `

@@ -11,6 +11,7 @@ export const HeaderContainer = styled.header`
 
   position: relative;
   overflow: hidden;
+  z-index: -1;
 
   &::after {
     content: '';

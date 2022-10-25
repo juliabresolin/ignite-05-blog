@@ -28,5 +28,16 @@ export const GlobalStyle = createGlobalStyle`
     &:disabled {
       cursor: not-allowed;
     }
+
+    &:hover:not(:disabled) {
+      transition: all .2s;
+    }
+  }
+
+  main {
+    width: 100%;
+    max-width: 54rem;
+    padding: 0 1rem;
+    margin: 0 auto;
   }
 `

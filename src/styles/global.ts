@@ -22,8 +22,10 @@ export const GlobalStyle = createGlobalStyle`
     font: 400 1rem ${(props) => props.theme.fonts.default}
   }
 
-  button, a {
+  button, a, a:-webkit-any-link  {
     cursor: pointer;
+    text-decoration: none;
+    color: inherit;
 
     &:disabled {
       cursor: not-allowed;

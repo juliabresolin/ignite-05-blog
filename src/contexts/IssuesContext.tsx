@@ -23,7 +23,7 @@ interface IssuesContextType {
   issues: Issue[]
   issuesIsLoading: boolean
   quantity: number
-  getIssues: () => Promise<void>
+  getIssues: (search?: string) => Promise<void>
 }
 
 interface IssuesProviderProps {
@@ -38,12 +38,12 @@ export function IssuesProvider({ children }: IssuesProviderProps) {
 
   const quantity = issues.length
 
-  const getIssues = useCallback(async () => {
+  const getIssues = useCallback(async (search?: string) => {
     setIssuesIsLoading(true)
 
     const response = await api.get(`search/issues`, {
       params: {
-        q: `repo:${import.meta.env.VITE_GITHUB_API_USERNAME}/${
+        q: `${search ?? ''}repo:${import.meta.env.VITE_GITHUB_API_USERNAME}/${
           import.meta.env.VITE_GITHUB_API_REPO
         }`,
       },

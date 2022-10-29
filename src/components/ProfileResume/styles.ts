@@ -36,9 +36,10 @@ export const ProfileResumeContainer = styled.div`
     color: ${(props) => props.theme.colors.blue};
     line-height: 1.6;
     text-decoration: none;
+    border-bottom: 1px solid transparent;
 
     &:hover {
-      opacity: 0.7;
+      border-color: ${(props) => props.theme.colors.blue};
     }
   }
 `

@@ -17,6 +17,12 @@ export const IssuesListContainer = styled.ul`
     border-radius: 10px;
     padding: 2rem;
     overflow: hidden;
+    border: 2px solid transparent;
+    transition: border 0.2s;
+
+    &:hover {
+      border-color: ${(props) => props.theme.colors.label};
+    }
 
     @media ${(props) => props.theme.breakpoints.mobile} {
       max-width: 100%;

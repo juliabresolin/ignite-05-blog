@@ -41,9 +41,15 @@ export const FormContainer = styled.form`
     line-height: 1.6;
     color: ${(props) => props.theme.colors.text};
     text-overflow: ellipsis;
+    transition: border 0.2s;
 
     &::placeholder {
       color: ${(props) => props.theme.colors.label};
+    }
+
+    &:hover,
+    &:focus {
+      border-color: ${(props) => props.theme.colors.blue};
     }
   }
 `

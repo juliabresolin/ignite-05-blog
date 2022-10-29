@@ -1,11 +1,15 @@
+import { useContext } from 'react'
+import { IssuesContext } from '../../../contexts/IssuesContext'
 import { FormContainer, SearchFormContainer } from './styles'
 
 export function SearchForm() {
+  const { quantity } = useContext(IssuesContext)
+
   return (
     <SearchFormContainer>
       <header>
         <strong>Publicações</strong>
-        <span>6 publicações</span>
+        <span>{`${quantity} Publicações`}</span>
       </header>
 
       <FormContainer action="">

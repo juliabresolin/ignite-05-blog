@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { useContext, useEffect, useState } from 'react'
+import { IssuesContext } from '../../contexts/IssuesContext'
 import { UserContext } from '../../contexts/UserContext'
 import { LoaderContainer } from './styles'
 
@@ -7,16 +8,17 @@ export function Loader() {
   const [isLoading, setIsLoading] = useState(false)
 
   const { userIsLoading } = useContext(UserContext)
+  const { issuesIsLoading } = useContext(IssuesContext)
 
   useEffect(() => {
-    if (userIsLoading) {
+    if (userIsLoading || issuesIsLoading) {
       setIsLoading(true)
     } else {
       setTimeout(() => {
         setIsLoading(false)
       }, 500)
     }
-  }, [userIsLoading])
+  }, [userIsLoading, issuesIsLoading])
 
   const icon = {
     hidden: {

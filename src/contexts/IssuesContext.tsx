@@ -1,3 +1,4 @@
+/* eslint camelcase: off */
 import {
   createContext,
   ReactNode,
@@ -7,8 +8,8 @@ import {
 } from 'react'
 import { api } from '../lib/axios'
 
-interface Issue {
-  id: number
+export interface Issue {
+  number: number
   title: string
   body: string
   created_at: string
@@ -23,6 +24,7 @@ interface IssuesContextType {
   issues: Issue[]
   issuesIsLoading: boolean
   quantity: number
+  getIssue: (issueNumber: string) => Promise<Issue>
   getIssues: (search?: string) => Promise<void>
 }
 
@@ -46,6 +48,7 @@ export function IssuesProvider({ children }: IssuesProviderProps) {
         q: `${search ?? ''}repo:${import.meta.env.VITE_GITHUB_API_USERNAME}/${
           import.meta.env.VITE_GITHUB_API_REPO
         }`,
+        is: 'issue',
       },
     })
 
@@ -53,13 +56,39 @@ export function IssuesProvider({ children }: IssuesProviderProps) {
     setIssuesIsLoading(false)
   }, [])
 
+  async function getIssue(issueNumber: string) {
+    const response = await api.get(
+      `repos/${import.meta.env.VITE_GITHUB_API_USERNAME}/${
+        import.meta.env.VITE_GITHUB_API_REPO
+      }/issues/${issueNumber}`,
+      {
+        headers: {
+          Authorization: `Bearer ${import.meta.env.VITE_GITHUB_API_TOKEN}`,
+        },
+      },
+    )
+
+    const { number, title, comments, created_at, user, html_url, body } =
+      response.data
+
+    return {
+      number,
+      title,
+      comments,
+      created_at,
+      user,
+      html_url,
+      body,
+    }
+  }
+
   useEffect(() => {
     getIssues()
   }, [getIssues])
 
   return (
     <IssuesContext.Provider
-      value={{ getIssues, issues, issuesIsLoading, quantity }}
+      value={{ getIssues, issues, issuesIsLoading, quantity, getIssue }}
     >
       {children}
     </IssuesContext.Provider>

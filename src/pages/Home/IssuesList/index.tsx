@@ -12,8 +12,8 @@ export function IssuesList() {
     <IssuesListContainer>
       {issues.map((issue) => {
         return (
-          <li key={issue.id}>
-            <Link to={String(issue.id)}>
+          <li key={issue.number}>
+            <Link to={String(issue.number)}>
               <header>
                 <strong>{issue.title}</strong>
                 <small>

@@ -1,7 +1,5 @@
 import { Loader } from '../../components/Loader'
 import { ProfileResume } from '../../components/ProfileResume'
-import { IssuesProvider } from '../../contexts/IssuesContext'
-import { UserProvider } from '../../contexts/UserContext'
 import { IssuesList } from './IssuesList'
 import { SearchForm } from './SearchForm'
 import { HomeContainer } from './styles'
@@ -9,16 +7,12 @@ import { HomeContainer } from './styles'
 export function Home() {
   return (
     <HomeContainer>
-      <UserProvider>
-        <IssuesProvider>
-          <Loader />
-          <main>
-            <ProfileResume />
-            <SearchForm />
-            <IssuesList />
-          </main>
-        </IssuesProvider>
-      </UserProvider>
+      <Loader />
+      <main>
+        <ProfileResume />
+        <SearchForm />
+        <IssuesList />
+      </main>
     </HomeContainer>
   )
 }

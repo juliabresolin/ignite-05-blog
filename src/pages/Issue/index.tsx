@@ -1,3 +1,9 @@
+import { IssueHeader } from './IssueHeader'
+
 export function Issue() {
-  return <span>issue works</span>
+  return (
+    <>
+      <IssueHeader />
+    </>
+  )
 }

@@ -25,7 +25,6 @@ export const GlobalStyle = createGlobalStyle`
   button, a, a:-webkit-any-link  {
     cursor: pointer;
     text-decoration: none;
-    color: inherit;
 
     &:disabled {
       cursor: not-allowed;

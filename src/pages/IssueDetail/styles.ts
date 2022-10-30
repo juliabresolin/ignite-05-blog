@@ -67,3 +67,29 @@ export const IssueDetails = styled.ul`
     }
   }
 `
+export const IssueContent = styled.div`
+  padding: 2.5rem 2rem;
+
+  p {
+    line-height: 1.6;
+    color: ${(props) => props.theme.colors.text};
+
+    & + p {
+      margin-top: 1.5rem;
+    }
+  }
+
+  a {
+    color: ${(props) => props.theme.colors.blue};
+    border-bottom: 1px solid transparent;
+
+    &:hover,
+    &:focus {
+      border-color: ${(props) => props.theme.colors.blue};
+    }
+  }
+
+  pre {
+    margin: 1.5rem 0;
+  }
+`

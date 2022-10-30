@@ -4,12 +4,6 @@ export const IssuesListContainer = styled.ul`
   margin-top: 3rem;
   list-style: none;
 
-  /* display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 2rem;
-  flex-grow: 1; */
-
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: auto;
@@ -37,6 +31,10 @@ export const IssuesListContainer = styled.ul`
 
     @media ${(props) => props.theme.breakpoints.mobile} {
       max-width: 100%;
+    }
+
+    a:-webkit-any-link {
+      color: inherit;
     }
 
     header {

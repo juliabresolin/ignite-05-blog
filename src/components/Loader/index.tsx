@@ -8,17 +8,16 @@ export function Loader() {
   const [isLoading, setIsLoading] = useState(false)
 
   const { userIsLoading } = useContext(UserContext)
-  const { issuesIsLoading } = useContext(IssuesContext)
 
   useEffect(() => {
-    if (userIsLoading || issuesIsLoading) {
+    if (userIsLoading) {
       setIsLoading(true)
     } else {
       setTimeout(() => {
         setIsLoading(false)
       }, 500)
     }
-  }, [userIsLoading, issuesIsLoading])
+  }, [userIsLoading])
 
   const icon = {
     hidden: {
